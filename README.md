@@ -1,8 +1,10 @@
 # Welcome to Vue Vixens!
 
-Vue Vixens is an initiative created in partnership with Progress Women, a corporate usergroup for mentoring women at Progress both technically and professionally. Vue Vixens' mission is to create workshops to teach Vue.js in a cool and fun way to 'foxy people who identify as women'. It is based on the successful model pioneered by Shmuela Jacobs for the Angular community, ng-girls.org. Ng-Girls was in turn inspired by the Rails Bridge and Django Girls initiatives. 
+![Vue Vixens Logo](vuevixens-logo.png)
 
-These online codelabs are to be completed in a workshop format during meetups, conferences, and brown-bag lunches. Workshop attendees can to register for events at http://www.vuevixens.org.
+Vue Vixens is an initiative created in partnership with Progress Women, a corporate usergroup for mentoring women at Progress both technically and professionally. Vue Vixens' mission is to create workshops to teach Vue.js in a cool and fun way to 'foxy people who identify as women'. It is based on the successful model pioneered by Shmuela Jacobs for the Angular community, [http://www.ng-girls.org](ng-girls.org). Ng-Girls was in turn inspired by the Rails Bridge and Django Girls initiatives. 
+
+These online codelabs are to be completed in a workshop format during meetups, conferences, and brown-bag lunches. Workshop attendees can to register for events at [http://www.vuevixens.org](vuevixens.org).
 
 The goal of the program is to familiarize women and those who identify as such with concepts of programming for web and mobile using Vue.js in a supportive and inclusive environment. Join a skulk near you!
 
