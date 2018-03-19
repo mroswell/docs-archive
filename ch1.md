@@ -1,4 +1,4 @@
-# 📋 Vue Vixens Project 1: Introducing the My Pet Shop web site
+# 📋 Chapter 1: Introducing the My Pet Shop web site
 
 | **Project Goal**            | Get started with Vue.js by creating a static Pet Shop web site                                                                                                                                   |
 | --------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
