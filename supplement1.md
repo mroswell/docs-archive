@@ -1,0 +1,7 @@
+# Supplement 1: 📱 A quick mobile pet display app
+
+| **Project Goal**            | Build a NativeScript-Vue mobile app to display random pets                                                                                                                                   |
+| --------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| **What you’ll learn**       | Setting up your Vue app, CSS Grid, Styling in Vue, code structure in preparation for moving forward.                                                                                             |
+| **Tools you’ll need**       | A modern browser like Chrome. Access to the [NativeScript Playground](http://play.nativescript.org) - consider creating an account in the Playground to keep the versions of your work intact. A mobile phone (iOS or Android) with the NativeScript Playground and Viewer apps installed |
+| **Time needed to complete** | 1/2 hour                                                                                                                                                 
