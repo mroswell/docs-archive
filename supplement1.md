@@ -19,7 +19,7 @@ Click 'Play Now' to open the main editor. You'll see a QR code appear - scan tha
 
 By default, the first playground app is created using Angular. Click 'new' at the top and choose 'NS-Vue' as a template. You'll get another QR code, so scan that one. You'll see your phone refresh and a basic app appear:
 
-<img src="images/playground2.png" style="width: 300px; border: 1px black solid" />
+![base app](images/playground2.png#phone)
 
 ## 2. Add some Styles
 
@@ -168,7 +168,7 @@ new Vue({
 
 The final app looks like this:
 
-<img src="images/playground3.png" style="width: 300px; border: 1px black solid" />
+![final app](images/playground3.png#phone)
 
 It's really interesting to build Vue.js apps for mobile devices in the NativeScript playground. Now that you know how, what else can you build?
 
