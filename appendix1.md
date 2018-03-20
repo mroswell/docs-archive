@@ -4,7 +4,7 @@ Don't worry! At the beginning of each chapter, you are given a link to start fre
 
 All the chapter links are kept [here](https://github.com/VueVixens/projects) - pick your chapter by saving its URL. For example, the downloadable link for Chapter 1 is [https://github.com/VueVixens/projects/tree/master/chapter-1-end](https://github.com/VueVixens/projects/tree/master/chapter-1-end).
 
-> Note: ensure that you are logged into CodeSandbox.io so that you are able to keep your sandboxes in your account.
+?> Note: ensure that you are logged into CodeSandbox.io so that you are able to keep your sandboxes in your account.
 
 1. First, create a new Sandbox in CodeSandbox.io by clicking 'Create New Sandbox' on the homepage and then clicking the 'import from Github' link at the bottom left.
 
