@@ -1,13 +1,13 @@
 # 📋 Chapter 2: Build a pet gallery
 
-| **Project Goal** | Learn how to manipulate data in a web app                                                                                                                                   |
+| **Project&nbsp;Goal** | Learn how to manipulate data in a web app                                                                                                                                   |
 | --------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
-| **What you’ll learn**       | Using static data, you'll build a card interface to show many adoptable dogs                                                                                             |
-| **Tools you’ll need**       | A modern browser like Chrome. If using Chrome, download Chrome DevTools for Vue.js. An account in CodeSandbox.io. If you get lost, import the starting point for this chapter [here](https://github.com/VueVixens/projects/tree/master/chapter-1-end). Instructions on how to do this are in [Appendix 1](appendix_1.md) |
-| **Time needed to complete** | 1/2 hour                                                                                                                                                                                     |
+| **What&nbsp;you’ll&nbsp;learn**       | Using static data, you'll build a card interface to show many adoptable dogs                                                                                             |
+| **Tools&nbsp;you’ll&nbsp;need**       | A modern browser like Chrome. If using Chrome, download Chrome DevTools for Vue.js. An account in CodeSandbox.io. If you get lost, import the starting point for this chapter [here](https://github.com/VueVixens/projects/tree/master/chapter-1-end). Instructions on how to do this are in [Appendix 1](appendix_1.md) |
+| **Time needed to complete** | 1 hour                                                                                                                                                                                     |
 
 # Instructions
-1. Start [here](https://codesandbox.io/s/9yn26prmko)
+1. Start [here](https://github.com/VueVixens/projects/tree/master/chapter-1-end)
 2. Now we have only a home page, but we want to add one more page for containing pet cards. Let's create a single-page application!
     > A single-page application (SPA) is a web application or web site that interacts with the user by dynamically rewriting the current page rather than loading entire new pages from a server
     > (Wikipedia)
