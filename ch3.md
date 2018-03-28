@@ -42,7 +42,37 @@
 	```
 	husky.img = response.data.message;
 	```
+10. Let's try to load random image for each dog in our `dogs` array. First thing we need is a proper endpoint for each breed we have. We will create an array of links with `.map` method.
 
+	?> Note: The `map()` method creates a new array with the results of calling a provided function on every element in the calling array.
+	```
+	const linksArray = this.dogs.map(
+      dog => "/breed/" + dog.breed + "/images/random"
+   );
+   ```
+   So for each dog in the array we're taking its breed and insert it inside the endpoint string (we used the same one for husky, but breed was a static value there)
+11. Now we have to perform multiple API calls using all the links we've just created. `axios` has a helper functions for this case called `axios.all` and `axios.spread`. We should provide an array of our requests to the first one; it will return an array of responses and we should use `axios.spread` to spread this array into multiple arguments. To create an array of queries we will use a `.map` method on our `linksArray`, performing `axios.get` for each link:
+	```
+	axios.all(linksArray.map(link => axios.get(link)))
+    .then(
+      axios.spread((...res) => {
+        this.dogs.forEach((dog, index) => {
+          dog.img = res[index].data.message;
+        });
+      })
+    );
+    ```
+    
+    ?> Note: The forEach() method executes a provided function once for each array element.
+    
+	So, after we've got an array of images in response, we are iterating through our `dogs` array again, replacing each dog image with a corresponding new one (`index` is the index of the current element being processed in the array; it is the same for both arrays because response objects are placed in the same order they were sent).
+12. Now we have new images each time our `Pets` component is created (on page refresh or simply navigation to `/pets` route from home). The only issue is we can still see old images for a short moment. Let's clear dogs images before we perform a query. Add this string as a first one inside `created()` hook:
+	```
+	this.dogs.forEach(dog => {
+      dog.img = "";
+    });
+	```
+13. Now we have empty dog portraits from the start and then images are loaded from API
 
 # Final result
-![]()
+![](https://i.imgur.com/XtbvYRl.jpg)
