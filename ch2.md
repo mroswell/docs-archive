@@ -9,8 +9,9 @@
 # Instructions
 1. Start [here](https://github.com/VueVixens/projects/tree/master/chapter-1-end)
 2. Now we have only a home page, but we want to add one more page for containing pet cards. Let's create a single-page application!
-    > A single-page application (SPA) is a web application or web site that interacts with the user by dynamically rewriting the current page rather than loading entire new pages from a server
-    > (Wikipedia)
+
+  > A single-page application (SPA) is a web application or web site that interacts with the user by dynamically rewriting the current page rather than loading entire new pages from a server (Wikipedia)
+
 3. To create SPA with Vue we need vue-router. So let's first add it to dependencies (click `Add Dependency` button and search for `vue-router`)
 4. Switch to `main.js` file and import vue-router:
     ```
