@@ -24,4 +24,10 @@ The goal of the program is to familiarize women and those who identify as such w
 - Part 6 – Mobilize me – craft a NativeScript app for your pet
   - Now that you’ve adopted a dog, display his/her stats in a mobile app and use the Social Share plugin to tell your friends about him/her. This app will be built in the NativeScript Playground
 
-[filename](_partials/footer.md ':include')
+- - -
+
+### Thank You to our Contributors!
+
+[<img alt="NataliaTepluhina" src="https://avatars0.githubusercontent.com/u/18719025?v=4&s=117" width="117">](https://github.com/NataliaTepluhina) |[<img alt="jlooper" src="https://avatars2.githubusercontent.com/u/1450004?v=4&s=117" width="117">](https://github.com/jlooper) |
+:---: |:---: |
+[NataliaTepluhina](https://github.com/NataliaTepluhina) |[jlooper](https://github.com/jlooper) 
