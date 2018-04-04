@@ -101,7 +101,7 @@ Now let's connect our newly created component with the router and check if it's 
 15. What actually do we want to save on out application state? It's a cart, which will contain selected dogs. Let's add a `cart` array to out initial `state` object:
 
 	```
-	export default Vuex.Store({
+	export default new Vuex.Store({
 	  state: {
 	  	cart: [],
 	  }
