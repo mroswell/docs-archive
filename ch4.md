@@ -174,13 +174,13 @@ Now let's connect our newly created component with the router and check if it's 
 		]
 	},
 	```
-19. Inside the `Cart.vue` component we will iterate through the `cart` array with already known `v-for` directive. Let's change the template accordingly, using `dog.name` as a key:
+19. Inside the `Cart.vue` component we will iterate through the `cart` array with already known `v-for` directive. This time we also want to know dog's index inside the `cart` array and use this index as a key. To do so we have to specify an alias for `index` inside the `v-for` directive:
 
 	```
 	<div>
 	  <v-list>
 	      <v-subheader>Your cart</v-subheader>
-	      <v-list-tile avatar v-for="dog in cart" :key="dog.name" @click="{}">
+	      <v-list-tile avatar v-for="(dog, index) in cart" :key="index" @click="{}">
 	        <v-list-tile-avatar>
 	          <img :src="dog.img">
 	        </v-list-tile-avatar>
