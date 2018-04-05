@@ -8,10 +8,44 @@
 
 # Instructions
 
-Here, we will include step by step instructions.
+Since this is the very first Vue.js web project we're going to make, we'll start from scratch in [Code Sandbox](http://codesandbox.io). Create a Code Sandbox account and scaffold a starter Vue.js template by clicking [here](https://codesandbox.io/s/vue).
 
-1. Start [here](https://codesandbox.io/s/3x309k44op)
-2. Familiarize yourself with the project, have a look at the HTML & CSS structure. Try to change classes in markup and watch how will change block colors on the webpage.
+//1. Start [here](https://codesandbox.io/s/3x309k44op)
+
+We're going to build a storefront for a fictional Pet Shop that will look like this:
+
+![](images/petshop_chapter1_1.png)
+
+In addition, we're going to create a switch that will change the look of the shop to resemble this:
+
+![](images/petshop_chapter1_2.png)
+
+Take a look at the code that was scaffolded by Code Sandbox for a basic Vue.js app. The first file you'll see is open by default: `main.js`. This is the main starting point of a Vue.js app. Note that in this file you import Vue from its npm package: `import Vue from "vue";`. Code Sandbox imports all the needed dependencies from npm to build the app; you can always check out the root `package.json` to find out which dependencies are needed.
+
+`main.js` also initializes the app as a new Vue.js app and sets the div into which the app code will be injected. It also names the main component and sets the template's name:
+
+```
+new Vue({
+  el: "#app",
+  components: { App },
+  template: "<App/>"
+});
+```
+
+Open up `App.vue`. In this file, the 'home' component is built. It contains the three main parts of a Vue.js Single File Component (SFC): a template, a script block, and a style block. 
+
+Note the first div in the template block has the id of 'app' - this is the div where the app code will be injected. There's also a `<HelloWorld>` component included underneath the logo image. This is an example of an SFC being included into `App.vue`.
+
+Open `/components/HelloWorld.vue` and you'll find the source of the list of links that appears embedded in `App.vue`. This file also includes a script block with a `msg` variable and some more styles in a `<style>` block.
+
+We're going to rip this sample app apart and recreate it! Let's get started.
+
+1. build main.js
+2. build App.vue
+3. embed a component
+
+
+
 3. You might see the `orange-green` class in stylesheet. Let's add it to the `<main>` element and observe how all the colors & background are changed:
     ```
     <main class="orange-green">
