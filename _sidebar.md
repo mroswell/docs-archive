@@ -7,6 +7,6 @@
 - - -
 * [Appendix 1: Import a repo to start fresh](appendix1.md)
 - - -
-* [Supplement 1: A quick mobile project](supplement1.md)
+* [Mini-Workshop 1: Push a button, get a dog!](supplement1.md)
 
 
