@@ -4,7 +4,11 @@
 
 Vue Vixens is an initiative created by Jen Looper, a Senior Developer Advocate at [Progress](http://www.progress.com), creators of NativeScript, Kendo UI, Open Edge, and more. Vue Vixens' mission is to create workshops to teach Vue.js in a cool and fun way to 'foxy people who identify as women'. It is based on the successful model pioneered by Shmuela Jacobs for the Angular community, [http://www.ng-girls.org](ng-girls.org). Ng-Girls was in turn inspired by the Rails Bridge and Django Girls initiatives.
 
-> We do more than full day workshops! We also can help with your conference's diversity offerings - just contact us at info@vuevixens.org 
+> We do more than full day workshops! We also can help with your conference's diversity offerings - just contact us at [info@vuevixens.org](mailto:info@vuevixens.org).
+
+These workshops are designed to help people get better acquainted with both Vue.js and NativeScript-Vue, an implementation of Vue.js that lets developers write native mobile apps using Vue. 3/4 of a standard workshop day is spent on the web, and 1/4 on mobile. Below is an interview with Jen and Evan You, creator of Vue, and Igor Randjelovic, creator of NativeScript-Vue, giving the background and history of the projects. 
+
+<iframe width="560" height="315" src="https://www.youtube.com/embed/jFsmrudIFmI" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
 
 These documents are presented in two groups. The first grouping of chapters comprises the full-day workshop. The second grouping are listed as 'mini-workshops' and can be done ad hoc with groups for breakfasts, lunch and learns, or meetups. We are adding to this content progressively. 
 
