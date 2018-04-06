@@ -202,6 +202,8 @@ Adding the style sheet didn't do much to our template except make the `<li>` gro
 
 Before we edit the template, we're going to install Vuetify. Vuetify is a cool library that gives a Material Design styling to your Vue apps. In this chapter, we're only going to use it to create a switch, but we'll use it more in future chapters.
 
+>Vuetify is a semantic component framework for Vue. It aims to provide clean, semantic and reusable components for building your application. You can find full documentation for it [here](https://vuetifyjs.com/en/getting-started/quick-start)
+
 Install it by clicking the 'Add Dependency' button in the Dependency dropdown area on the left in Code Sandbox. Search for 'Vuetify' and install it. 
 
 Check whether the dependency is installed by opening `package.json` and checking the "dependencies" object. It should look like this:
@@ -319,20 +321,20 @@ So, now you have a variable called `themeSwitched` and its default value is `fal
 
 - In the `<main>` tag, replace `false` in the class binding with our newly created variable:
    
-   ```
-    <main :class="{'orange-green': themeSwitched}">
-    ```
+```
+<main :class="{'orange-green': themeSwitched}">
+```
 
 - Change `themeSwitched` value inside `data` from `false` to `true`. Again, you can see the color change effect.
 
 - Now we only need a switch to change a theme. First we will create a button (we're using Vuetify so it will be a Vuetify button component). Let's place it in the `header` right after the `h1` tag:
     
-    ```
-    <header class="app-header dark-brown">
-        <h1>My Pet Store</h1>
-        <v-btn>Switch theme</v-btn>
-      </header>
-      ```
+```
+<header class="app-header dark-brown">
+    <h1>My Pet Store</h1>
+    <v-btn>Switch theme</v-btn>
+</header>
+```
 
 - Now add a click event handler to our button. We can use `v-on` directive or its shortcut `@`. This handler will change `themeSwitched` value to its opposite value, toggling the color-changing class.
     
@@ -344,7 +346,7 @@ You might have noticed that the button looks a little small. To fix this, add Vu
 
 ```
 <link rel="stylesheet" href="https://unpkg.com/vuetify@1.0.9/dist/vuetify.min.css">
-	<link href='https://fonts.googleapis.com/css?family=Roboto:300,400,500,700|Material+Icons' rel="stylesheet">
+<link href='https://fonts.googleapis.com/css?family=Roboto:300,400,500,700|Material+Icons' rel="stylesheet">
 ```
 
 Test your application by clicking the button. Looks nice, right?
@@ -352,5 +354,5 @@ Test your application by clicking the button. Looks nice, right?
 **Congratulations! You've just finished Chapter 1!**
 
 # Final result
-![](https://i.imgur.com/E7He54K.png)
+![](images/petshop_chapter1_1.png)
 
