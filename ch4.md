@@ -1,161 +1,196 @@
-# 📋 Chapter 4: Create a dog shopping cart
+# 📋 Chapter 4: Create a dog adoption experience
 
-| **Project&nbsp;Goal** | Create a shopping cart for the shop so that you can add and remove a dog from your cart                                                                                                                                   |
+| **Project&nbsp;Goal** | Create a tagging system for the shop so that you can add and remove a dog from your 'loyalty' list                                                                                                                                   |
 | --------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
 | **What&nbsp;you’ll&nbsp;learn**       | State management in Vue application with Vuex                                                                                             |
 | **Tools&nbsp;you’ll&nbsp;need**       | A modern browser like Chrome. If using Chrome, download Chrome DevTools for Vue.js. An account in CodeSandbox.io. If you get lost, import the starting point for this chapter [here](https://github.com/VueVixens/projects/tree/master/chapter-3-end). Instructions on how to do this are in [Appendix 1](appendix_1.md) |
 | **Time needed to complete** | 1.5 hour                                                                                                                                                                                     |
 
 # Instructions
-1. Start [here](https://github.com/VueVixens/projects/tree/master/chapter-3-end)
-2. We need a shopping cart component to show the list of selected dogs. Let's create a new file in the `views` folder and name it `Cart.vue`
-3. First thing we need in new component is a template. Inside this new file add a `<template></template>` tags.
-4. Inside `template` tags create a `<div></div>` tag and add there a simple text 'Cart works!'.
-	
-	```
-	<template>
-	  <div>
-	    Cart works!
-	  </div>
-	</template>
-	```
-Now let's connect our newly created component with the router and check if it's displaying correctly on corresponding route.
-5. Go to the `main.js` file. On the top, after importing `Home` and `Pets` components, add one more import statement:
-	
-	```
-	import Cart from "./views/Cart";
-	```
-	After that, add one more route to the `routes`:
-	
-	```
-	{ path: "/cart", component: Cart }
-	```
-	In the browser address bar try to navigate to `/cart` (simply add `/cart` to the URL of the homepage). You should see the text 'Cart works!` between the header and the footer.
-6. Let's add a link to our cart inside the navbar. Later we will also show the selected items amount on it, but for now it will be just a plain icon with link. Go to the `App.vue` file and add the following code inside `v-toolbar` right after the closing tag of `v-toolbar-items`:
-	
-	```
-	<v-spacer></v-spacer>
-    <router-link to="/cart">
-	   <v-icon large>shopping_cart</v-icon>
-	</router-link>
-	```
-	
-	>`v-spacer` is a Vuetify component to fill the whole free space between other components. `v-icon` is a component displaying [Material icons](https://material.io/icons/)
 
-	Now when you're clicking on the cart icon you will be navigated to `/cart` route.
+If you need to restart your project, clone [this repo](https://github.com/VueVixens/projects/tree/master/chapter-3-end) into Code Sandbox after logging in.
 
-7. Let's create a markup for `Cart` component. We will use Vuetify list component to display our dogs. Let's remove our placeholder text from the `<div></div>` tag and replace it with `<v-list></v-list` tag. At this moment our template looks like this:
+In this chapter, we will build a 'loyalty list' - like a shopping cart - to show the list of dogs that we particularly like and would like to adopt. To get started, create a new, blank file in the `views` folder and name it `Favorites.vue`.
+
+**Build the Loyalty Cart**
+
+The first thing we need in this new component is a template. Inside this new file add a `<template></template>` tags.
+
+Inside `template` tags create a `<div></div>` tag and add a simple text 'My Favorites'.
 	
-	```
-	<div>
-		<v-list>
-		</v-list>
-	</div>
-	```
-8. We need a name of our list. Vuetify is using a `v-subheader` component for this purpose, let's add one:
+```
+<template>
+	 <div>
+	   My Favorites
+	 </div>
+</template>
+```
+
+Now let's connect our newly created component with the router and check if it's displaying correctly on its corresponding route.
+
+Go to the `main.js` file. On the top, after importing `Home` and `Pets` components, add one more import statement:
 	
-	```
+```
+import Favorites from "./views/Favorites";
+```
+	
+After that, add one more route to the `routes`:
+	
+```
+{ path: "/favorites", component: Favorites }
+```
+	
+In the browser address bar try to navigate to `/favorites` (simply add `/favorites` to the URL of the homepage). You should see the text 'My Favorites' between the header and the footer.
+
+Let's add a link to our cart inside the navbar. Later we will also show the selected items amount on it, but for now it will be just a plain icon with link. Go to the `App.vue` file and add the following code inside `v-toolbar` right after the closing tag of `v-toolbar-items`:
+	
+```
+<v-spacer></v-spacer>
+   <router-link to="/cart">
+	  <v-icon large>loyalty</v-icon>
+</router-link>
+```
+	
+>`v-spacer` is a Vuetify component to fill the whole free space between other components. `v-icon` is a component displaying [Material icons](https://material.io/icons/).
+
+Now when you're clicking on the cart icon you will be navigated to `/favorites` route.
+
+Let's create markup for the `Favorites` component. We will use Vuetify's list component to display our dogs. Let's remove our placeholder text from the `<div></div>` tag and replace it with `<v-list></v-list` tag. Now the template looks like this:
+	
+```
+<div>
+	<v-list>
+	</v-list>
+</div>
+```
+
+We need a name for this list. Vuetify is using a `v-subheader` component for this purpose, so let's add one:
+	
+```
+<div>
+	 <v-list>
+	   <v-subheader>My Favorites</v-subheader>
+	 </v-list>
+</div>
+```
+
+Now let's add a list element with mock data: a dog image, its name and a delete icon. We will need a `v-list-tile` component for the list item; `v-list-tile-avatar` for the dog image; `v-list-tile-content` for its name and `v-list-tile-action` plus `v-icon` for the delete button. 
+
+> Learn more about lists in the [Vuetify list component docs](https://vuetifyjs.com/en/components/lists).
+
+Now our template is:
+	
+```
 	<div>
 	  <v-list>
-	    <v-subheader>Your cart</v-subheader>
-	  </v-list>
-	</div>
-	```
-9. Now let's add a list element with mock data: dog image, name and delete icon. We will need `v-list-tile` component for list item; `v-list-tile-avatar` for dog image; `v-list-tile-content` for name and `v-list-tile-action` plus `v-icon` for delete button. You can check [Vuetify list component docs](https://vuetifyjs.com/en/components/lists) for more details. Now our template is:
-	
-	```
-	<div>
-	  <v-list>
-	      <v-subheader>Your cart</v-subheader>
+	      <v-subheader>My Favorites</v-subheader>
 	      <v-list-tile avatar @click="{}">
 	        <v-list-tile-avatar>
 	          <img src="https://dog.ceo/api/img/husky/n02110185_1469.jpg">
 	        </v-list-tile-avatar>
-	        <v-list-tile-content>Test</v-list-tile-content>
+	        <v-list-tile-content>Fluffy</v-list-tile-content>
 	        <v-list-tile-action>
 	          <v-icon>delete</v-icon>
 	        </v-list-tile-action>
 	      </v-list-tile>
 	  </v-list>
 	</div>
-	```
-10. Great! Now it's time to display some real data inside the cart, but now we have a problem: how can we save selected dogs and pass them from the `Pets` component to the `Cart` one? We cannot use props, because this two components don't have any 'parent-child' relationship... In such cases we need a _state management_ library and Vue does have one: it's called `Vuex`
-	>Vuex is a state management pattern + library for Vue.js applications. It serves as a centralized store for all the components in an application, with rules ensuring that the state can only be mutated in a predictable fashion.
-11. To start working with this centralized store we have to add Vuex to our application. First, open the `Dependencies` dropdown, click on `Add dependency` button and seach for `vuex`
-12. Now let's create a `store` folder and a `store.js` file inside of it. Here we will save the whole application data.
-13. Open the `store.js` and add imports and install Vuex:
-	
-	```
-	import Vue from "vue";
-	import Vuex from "vuex";
-	
-	Vue.use(Vuex);
-	```
-14. Now let's create and export the actual store:
+```
 
-	```
-	export default Vuex.Store({
+**Manage the list's state with Vuex**
+
+At this point, you can see the UI coming together. Now it's time to display some real data inside the list, but now we have a problem: how can we save selected dogs and pass them from the `Pets` component to the `Cart` one? We cannot use props, because these two components don't have any 'parent-child' relationship... In such cases we need a _state management_ library and Vue does have one: it's called `Vuex`.
+
+>Vuex is a state management pattern and library for Vue.js applications. It serves as a centralized store for all the components in an application, with rules ensuring that the state can only be mutated in a predictable fashion. Learn more [here](vuex.vuejs.org/en/).
+
+To start working with this centralized store we have to add Vuex to our application. First, scroll down in the files tab and open the `Dependencies` dropdown. Click on `Add dependency` button and seach for `vuex`. Install the dependency.
+
+Now let's create a `store` folder inside `/src`. Add a `store.js` file inside of this new folder. This is where we will save all the application's data.
+
+Open the `store.js` and import Vuex:
+	
+```
+import Vue from "vue";
+import Vuex from "vuex";
+	
+Vue.use(Vuex);
+```
+
+Now let's create and export the actual store:
+
+```
+export default new Vuex.Store({
 	  
-	})
-	```
-15. What actually do we want to save on out application state? It's a cart, which will contain selected dogs. Let's add a `cart` array to out initial `state` object:
+})
+```
 
-	```
-	export default new Vuex.Store({
-	  state: {
-	  	cart: [],
-	  }
-	})
-	```
-16. We have to add this store to our Vue instance. To do this, move to the `main.js` file and add the import
+What actually do we want to save on our application state? It's a list of favorites, which will contain selected dogs. Let's add a `favorites` array to our initial `state` object by adding it between the curly brackets:
 
-	```
-	import store from "./store/store";
-	```
-	Then add the `store` to the Vue instance properties:
+```
+export default new Vuex.Store({
+	 state: {
+	  favorites: [],
+	 }
+})
+```
+
+We then have to add this store to our Vue instance. To do this, move to the `main.js` file and import it under the rest of the imports:
+
+```
+import store from "./store/store";
+```
 	
-	```
-	new Vue({
-	  el: "#app",
-	  components: { App },
-	  template: "<App/>",
-	  router,
-	  store
-	});
-	```
-	Now all the components will have an access to our state via `this.$store.state` placed inside component's computed property. Let's try to access it from the `Cart` component.
+Then add the `store` to the Vue instance properties in `main.js`:	
 	
-	>Computed properties can be used to do quick calculations of properties that are displayed in the view. These calculations will be cached and will only update when their dependencies are changed. 
+```
+new Vue({
+	el: "#app",
+	components: { App },
+	template: "<App/>",
+	router,
+	store
+});
+```
 	
-17. Inside `Cart.vue` add the script tag with the export default statement:
+Now all the components in the application will have access to our state via `this.$store.state` placed inside any component's computed property. Let's try to access it from the `Favorites` component.
 	
-	```
-	<script>
-		export default {
+>Computed properties can be used to do quick calculations of properties that are displayed in the view. These calculations will be cached and will only update when their dependencies are changed. 
+	
+Inside `Favorites.vue` add the script tag under the template tags with the `export default` statement:
+	
+```
+<script>
+	export default {
 		  
-		};
-	</script>
-	```
-	and add the `computed` property to the component:
+	};
+</script>
+```
 	
-	```
-	<script>
+and add the `computed` property to the component by editing the `<script>` block:
+	
+```
+<script>
 		export default {
 		  computed: {
-		    cart() {
-     		  return this.$store.state.cart;
+		    favorites() {
+     		  return this.$store.state.favorites;
     		}
 		  }
 		};
-	</script>
-	```
+</script>
+```
 	
-	You can see the `cart()` is a function which will return the value of our state `cart` array so we can use it in our component. Let's replace out mock data with the cart content.
-18. First let's temporarily add some content to the `state.cart`. Copy first three dogs from the `data/dogs.js` file and paste them to the `cart`:
+You can see that `favorites()` is a function which will return the value of the `favorites` array stored in state so we can use it in our component. 
+
+**Populate Favorites**
+
+Let's replace our mock data with the `favorites` content.
+
+First let's temporarily add some content to the `state.cart`. Copy the first three dogs from the `data/dogs.js` file and paste them to the `favorites` array in `store.js`:
 	
-	```
+```
 	state: {
-		cart: [
+		favorites: [
 		  {
 		    name: "Max",
 		    breed: "husky",
@@ -173,14 +208,15 @@ Now let's connect our newly created component with the router and check if it's 
 		  },
 		]
 	},
-	```
-19. Inside the `Cart.vue` component we will iterate through the `cart` array with already known `v-for` directive. This time we also want to know dog's index inside the `cart` array and use this index as a key. To do so we have to specify an alias for `index` inside the `v-for` directive:
+```
 
-	```
+Inside the `Favorites.vue` component we will iterate through the `favorites` array with the now-familiar `v-for` directive. This time we also want to know the dog's index inside the `favorites` array and use this index as a key. To do so we have to specify an alias for `index` inside the `v-for` directive. Change the `<template>` `<div>` to this markup:
+
+```
 	<div>
 	  <v-list>
-	      <v-subheader>Your cart</v-subheader>
-	      <v-list-tile avatar v-for="(dog, index) in cart" :key="index" @click="{}">
+	      <v-subheader>My Favorites</v-subheader>
+	      <v-list-tile avatar v-for="(dog, index) in favorites" :key="index" @click="{}">
 	        <v-list-tile-avatar>
 	          <img :src="dog.img">
 	        </v-list-tile-avatar>
@@ -191,17 +227,27 @@ Now let's connect our newly created component with the router and check if it's 
 	      </v-list-tile>
 	  </v-list>
 	</div>
-	```
-	Don't forget to change `src` attribute to `:src`, because now we are using dynamic property for it.
-20. Now we can see our mock data displaying on the `/cart` route! Let's add some more UI tweaks to them. First, we need some placeholder text to show when our cart is empty. We will wrap the whole list content in the wrapper div and show it only when we have items in our cart; otherwise user will see placeholder text. Let's change the template:
+```
+	
+>What changed? Notice that the `src` attribute changed to `:src`, because now we are using a dynamic property for it.
 
-	```
+Now we can see our mock data displaying on the `/favorites` route! Let's add some more UI tweaks to make the page look better. 
+
+**UI Tweaks**
+
+First, we need to add a placeholder to show when our list is empty. 
+
+>Note: the `v-if` directive conditionally renders the element based on the "truthiness" of the expression value - whether it is true or false. `v-else` directive serves as an 'else' block for `v-if`, providing an 'else' condition.
+
+We will wrap the whole list content in the wrapper div and show it only when we have items in our list of favorites; otherwise the user will see the placeholder text. Let's change the template:
+
+```
 	<div>
 	  <v-list>
-	    <v-subheader v-if="!cart.length">Your cart is empty</v-subheader>
+	    <v-subheader v-if="!favorites.length">Your favorites list is empty</v-subheader>
 	    <div v-else>
-	      <v-subheader>Your cart</v-subheader>
-	      <v-list-tile avatar v-for="dog in cart" :key="dog.name" @click="{}">
+	      <v-subheader>Your favorites</v-subheader>
+	      <v-list-tile avatar v-for="dog in favorites" :key="dog.name" @click="{}">
 	        <v-list-tile-avatar>
 	          <img :src="dog.img">
 	        </v-list-tile-avatar>
@@ -213,160 +259,200 @@ Now let's connect our newly created component with the router and check if it's 
 	    </div>
 	  </v-list>
 	</div>
-	```
-	>`v-if` directive conditionally render the element based on the truthy-ness of the expression value. `v-else` directive serves as an 'else' block for `v-if`
-	
-	What is happening here? First the application will check if the `cart` array has a _length_ (i.e. if there are some items inside this array; empty array has a length equal to 0). If the length is 0, the application will render only the `Your cart is empty` text and will ignore the `v-else` block. If array is not empty, application will jump to `v-else` block and render it.
-21. Let's also display the amount of selected items above the cart icon in toolbar. Move to the `App.vue` and add a computed property for `cart` (similar to the `Cart` component one):
+```
 
-	```
-	computed: {
-		cart() {
-		  return this.$store.state.cart;
-		}
+
+	
+>What is happening here? First, the application will check if the `favorites` array has a _length_ (i.e. if there are some items inside this array; an empty array has a length equal to 0). If the length is 0, the application will display `Your favorites list is empty` text and will ignore the `v-else` block. If the array is not empty, the application will jump to the `v-else` block and render it.
+
+Let's also display the number of selected dogs above the tag icon in the toolbar. Move to the `App.vue` and add a computed property for `favorites` (similar to the `Favorites` component one) we added earlier. You can place this under the `name` property:
+
+```
+computed: {
+	favorites() {
+		 return this.$store.state.favorites;
 	}
-	```
-	Now let's wrap out cart icon with the Vuetify `v-badge` component and show the amount of cart items inside of it:
-	
-	```
-	<router-link to="/cart">
-	    <v-badge color="grey lighten-1" overlap right v-model="cart.length">
-	      <span slot="badge">{{cart.length}}</span>
-	      <v-icon large>shopping_cart</v-icon>
-	    </v-badge>
-	</router-link>
-	```
-	`v-model` directive here will define the visibility of the badge. So, if the cart is empty, the badge will be hidden. With our mock data we can see the number `3` inside the badge.
-22. We need to find a way to add dogs to cart and remove them from it. In other words, we have to _change our state_. The only way to actually change state in a Vuex store is by committing a _mutation_. Vuex mutations are very similar to events: each mutation has a string **type** and a **handler**. The handler function is where we perform actual state modifications and it will receive the state as the first argument. Let's create our first mutation. Inside the `store.js` clear the state `cart` array and after the `state` property add `mutations`:
+},
+```
 
-	```
-	export const store = new Vuex.Store({
+Now let's wrap our favorites icon with the Vuetify `v-badge` component and show the number of items inside of it. Edit `App.vue` with the following markup:
+	
+```
+<router-link to="/cart">
+      <v-badge color="grey lighten-1" overlap right v-model="favorites.length">
+          <span slot="badge">{{favorites.length}}</span>
+            <v-icon large>loyalty</v-icon>
+       </v-badge>
+</router-link>
+```
+	
+>The `v-model` directive here will define the visibility of the badge. So, if the list is empty, the badge will be hidden. Since there are three items in our mock data, we can see the number `3` inside the badge.
+
+**Add and Remove items**
+
+We also need to build a way to add dogs to this favorites list and, sadly, to remove them from it. In other words, we have to _change our state_. The only way to actually change state in a Vuex store is by committing a _mutation_. Vuex mutations are very similar to events: each mutation has a string **type** and a **handler**. The handler function is where we perform actual state modifications and it will receive the state as the first argument. Let's create our first mutation. Inside the `store.js` clear the state `favorites` array and after the `state` property, add `mutations`:
+
+```
+export default new Vuex.Store({
+	 state: {
+	   favorites: []
+	 },
+	 mutations: {
+	 },
+});
+```
+
+Inside this object create `addToCart` mutation:
+	
+```
+	export default new Vuex.Store({
 	  state: {
 	    cart: []
 	  },
 	  mutations: {
+	    addToFavorites(state, payload) {
+	      state.favorites.push(payload);
+	    },
 	  },
 	});
-	```
-	Inside this object create `addToCart` mutation:
+```
 	
-	```
-	export const store = new Vuex.Store({
-	  state: {
-	    cart: []
-	  },
-	  mutations: {
-	    addToCart(state, payload) {
-	      state.cart.push(payload);
-	    },
-	  },
-	});
-	```
-	The mutation has two parameters: first is the state as said above; the second is the data which we will add to our `state.cart`. `addToCart` mutation will add the payload item to the `state.cart` array.
-	>You cannot directly call a mutation handler. To invoke it, you need to call store.commit with its type: `store.commit('addToCart')
-	Usually in Vuex mutations are committed with _actions_. Actions are similar to mutations but they can contain asyncronous operations (like API calls).
-23. Let's register an action to commit our `addToCart` mutation. Add the `actions` property to the store object and `addToCart` action to this property:
-
-	```
-	export const store = new Vuex.Store({
-	  state: {
-	    cart: []
-	  },
-	  mutations: {
-	    addToCart(state, payload) {
-	      state.cart.push(payload);
-	    },
-	  },
-	  actions: {
-	    addToCart({ commit }, payload) {
-	      commit("addToCart", payload);
-	    },
-	  }
-	});
-	```
-	>Action handlers receive a context object which exposes the same set of methods/properties on the store instance, so you can call `context.commit` to commit a mutation. We are using ES6 [argument destructuring](https://github.com/lukehoban/es6features#destructuring) to have only `commit` method of `context`
+This mutation has two parameters: first is the `state` as said above; the second is the `data` or `payload` which we will add to our `state.favorites`. The `addToFavorites` mutation will add the payload item to the `state.favorites` array.
 	
-	`payload` here is the same data we want to pass from the component to the mutation to change the state.
-24. Let's call our action from inside the `Pets.vue` component. First we need some kind of a button to add a certain dog to cart. Move to the `Dog.vue` component and add the button right below the `v-card-title` closing tag:
+>You cannot directly call a mutation handler. To invoke it, you need to call store.commit with its type: `store.commit('addToCart')`
 
-	```
-	<v-btn @click="$emit('addToCart', dog)">Add to Cart</v-btn>
-	```
-	With the `$emit` we are sending the message to our parent component (in this case it's `Pets.vue`) like 'Hi, something is happened here! Please read this message and react to it'. Our message also contains a second parameter: it's the `dog` which we're trying to add to our cart.
-25. Now let's open a `Pets.vue` and add a _listener_ to our emitted event:
+>Usually in Vuex mutations are committed with _actions_. Actions are similar to mutations but they can contain asyncronous operations (like API calls).
 
-	```
-	<app-dog :dog="pet" @addToCart=""></app-dog>
-	```
-	Fow now this listener is doing nothing but we want to call an action on this event. To do so we have to map the actions to our component.
-	>You can dispatch actions in components with `this.$store.dispatch('xxx')`, or use the `mapActions` helper which maps component methods to store.dispatch calls
+Let's register an action to commit our `addToFavorites` mutation. Add the `actions` property to the store object and `addToCart` action to this property:
+
+```
+export default new Vuex.Store({
+		state: {
+	   favorites: []
+	 },
+	 mutations: {
+	   addToFavorites(state, payload) {
+	     state.favorites.push(payload);
+	   },
+	 },
+	 actions: {
+	   addToFavorites({ commit }, payload) {
+	     commit("addToFavorites", payload);
+	   },
+	 }
+});
+```
+
+>Action handlers receive a context object which exposes the same set of methods/properties on the store instance, so you can call `context.commit` to commit a mutation. We are using ES6 [argument destructuring](https://github.com/lukehoban/es6features#destructuring) to use the `commit` method of `context`
+	
+>`payload` here is the same data we want to pass from the component to the mutation to change the state.
+
+**Build the UI**
+
+Let's call our action from inside the `Pets.vue` component. First we need some kind of a button to add a certain dog to the favorites list. Move to the `Dog.vue` component and add the button right below the `v-card-title` closing tag:
+
+```
+<v-btn @click="$emit('addToFavorites', dog)">Add to Favorites</v-btn>
+```
+	
+By using `$emit`, we are sending the message to our parent component (in this case it's `Pets.vue`) like 'Hi, something is happening here! Please read this message and react to it'. 
+
+Our message also contains a second parameter: it's the `dog` which we're trying to add to our favorites list.
+
+Now let's open `Pets.vue` and add a _listener_ to our emitted event by overwriting the current `<app-dog>` tag with this snippet:
+
+```
+<app-dog :dog="pet" @addToFavorites=""></app-dog>
+```
+	
+For now this listener is doing nothing but we want to call an action on this event. To do so we have to map the actions to our component.
+
+>You can dispatch actions in components with `this.$store.dispatch('xxx')`, or use the `mapActions` helper which maps component methods to store.dispatch calls.
 		
-	We will use the second solution. First import the `mapActions` helper:
+We will use the second solution. First import the `mapActions` helper in `Pets.vue`:
 		
-	```
-	import { mapActions } from "vuex";
-	```
-	and then add it to the component `methods` using [ES6 spread operator](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Spread_syntax)
+```
+import { mapActions } from "vuex";
+```
 	
-	```
-    methods: {
-      ...mapActions(["addToCart"])
-    },
-	```
-	Now we can dispatch `addToCart` like a simple component method.
-26. Let's call this method on `app-dog` `addToCart` event:
-
-	```
-	<app-dog :dog="pet" @addToCart="addToCart"></app-dog>
-	```
-	Try to click on `Add to Cart` buttons. You can see how the icon badge number increases and you can open the shopping cart by click on this icon and check how many dogs we have there.
-27. For now we can add any dog multiple times but we don't have five Maxs! Let's check our payload inside the mutation and add the dog only if it's not in the cart already:
-
-	```
-	addToCart(state, payload) {
-      if (state.cart.indexOf(payload) <= -1) {
-        state.cart.push(payload);
-      }
-    },
-	```
-	Here we're checking the index of `payload` inside the `state.cart` array. If index is lower or equal to -1 (in other words if the array does not contain such an element), we will add this item to the cart.
-28. Now we need a mechanism to remove dogs from the cart. Let's create an action and a mutation for this. In the `store.js` add the `removeFromCart` mutation to `mutations` object:
-
-	```
-	removeFromCart(state, payload) {
-      state.cart.splice(state.cart.indexOf(payload), 1);
-   }
-	```
-	>Here the splice() method changes the contents of an array by removing existing elements. First argument is the index of element we want to start with and the second argument is the number of elements we want to remove
+Then, add it to the component by creating a `methods` block, using the [ES6 spread operator](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Spread_syntax)
 	
-	So first we're finding the index of `payload` item inside the `state.cart` array and remove the one item starting from this index (i e we will remove only the `payload` item itself)
-29. Add the action to commit the `removeFomCart` mutation:
+```
+  methods: {
+     ...mapActions(["addToFavorites"])
+  },
+```
+	
+Now we can dispatch `addToFavorites` like a simple component method.
 
-	```
-	removeFromCart({ commit }, payload) {
-      commit("removeFromCart", payload);
-   }
-	```
-30. Now we need to dispatch this action on delete icon clicks. Go to the `Cart.vue` file. As you remember, first we should map actions to component methods. Import `mapActions` helper:
+Let's call this method on the `app-dog` `addToFavorites` event. Edit the `<app-dog` tag in `Pets.vue`:
 
-	```
-	import { mapActions } from "vuex";
-	```
-	and add it to the component `methods`
+```
+<app-dog :dog="pet" @addToFavorites="addToFavorites"></app-dog>
+```
 	
-	```
-	methods: {
-    ...mapActions(["removeFromCart"])
-  	}
-	```
-	And finally add the click listener to delete icon:
+Try to click on `Add to Favorites` buttons. You can see how the icon badge number increases and you can open the shopping cart by click on this icon and check how many dogs we have there.
+
+**Enhance the logic** 
+
+For now we can add any dog multiple times but we don't have five Maxes! Let's check our payload inside the `store.js` mutation and add the dog only if it's not in the list already:
+
+```
+addToFavorites(state, payload) {
+    if (state.favorites.indexOf(payload) <= -1) {
+       state.favorites.push(payload);
+     }
+},
+```
 	
-	```
-	<v-icon @click="removeFromCart(dog)">delete</v-icon>
-	```
-	Now you can add and remove dogs from your shopping cart.
+Here we're checking the index of `payload` inside the `state.favorites` array. If the index is lower or equal to -1 (in other words if the array does not contain such an element), we will add this item to the favorites list.
+
+**Remove from list**
+
+Now we need a mechanism to remove dogs from the favorites list. Maybe they were adopted by someone else! Let's create an action and a mutation for this. 
+
+In the `store.js` add the `removeFromCart` mutation to `mutations` object:
+
+```
+removeFromFavorites(state, payload) {
+    state.cart.splice(state.favorites.indexOf(payload), 1);
+  }
+```
+
+>Here the splice() method changes the contents of an array by removing existing elements. The first argument is the index of the element we want to start with and the second argument is the number of elements we want to remove.
 	
-Chapter 4 complete!
+So first we're finding the index of the `payload` item inside the `state.favorites` array and removing the one item starting from this index (i.e. we will remove only the `payload` item itself).
+
+Add the action to commit the `removeFomFavorites` mutation:
+
+```
+removeFromFavorites({ commit }, payload) {
+     commit("removeFromFavorites", payload);
+  }
+```
+
+Now we need to dispatch this action when the user clicks the delete icon. Go to the `Favorites.vue` file. As you remember, first we should map actions to component methods. Import `mapActions` helper at the top of the `<script>` tag:
+
+```
+import { mapActions } from "vuex";
+```
+and add it to the component `methods` under the `computed` block:
+	
+```
+methods: {
+   ...mapActions(["removeFromFavorites"])
+  }
+```
+	
+And finally add the click listener to the delete icon:
+
+```
+<v-icon @click="removeFromFavorites(dog)">delete</v-icon>
+```
+	
+Now you can add and remove dogs from your shopping cart.
+	
+Chapter 4 is complete!
 
 # Final result
 ![](https://i.imgur.com/Co0iGJT.jpg)
