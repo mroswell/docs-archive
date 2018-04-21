@@ -42,18 +42,18 @@ After that, add one more route to the `routes`:
 	
 In the browser address bar try to navigate to `/favorites` (simply add `/favorites` to the URL of the homepage). You should see the text 'My Favorites' between the header and the footer.
 
-Let's add a link to our cart inside the navbar. Later we will also show the selected items amount on it, but for now it will be just a plain icon with link. Go to the `App.vue` file and add the following code inside `v-toolbar` right after the closing tag of `v-toolbar-items`:
+Let's add a link to our list inside the navbar. Later we will also show the selected items amount on it, but for now it will be just a plain icon with link. Go to the `App.vue` file and add the following code inside `v-toolbar` right after the closing tag of `v-toolbar-items`:
 	
 ```
 <v-spacer></v-spacer>
-   <router-link to="/cart">
+   <router-link to="/favorites">
 	  <v-icon large>loyalty</v-icon>
 </router-link>
 ```
 	
 >`v-spacer` is a Vuetify component to fill the whole free space between other components. `v-icon` is a component displaying [Material icons](https://material.io/icons/).
 
-Now when you're clicking on the cart icon you will be navigated to `/favorites` route.
+Now when you're clicking on the favorites icon you will be navigated to `/favorites` route.
 
 Let's create markup for the `Favorites` component. We will use Vuetify's list component to display our dogs. Let's remove our placeholder text from the `<div></div>` tag and replace it with `<v-list></v-list` tag. Now the template looks like this:
 	
@@ -99,7 +99,7 @@ Now our template is:
 
 **Manage the list's state with Vuex**
 
-At this point, you can see the UI coming together. Now it's time to display some real data inside the list, but now we have a problem: how can we save selected dogs and pass them from the `Pets` component to the `Cart` one? We cannot use props, because these two components don't have any 'parent-child' relationship... In such cases we need a _state management_ library and Vue does have one: it's called `Vuex`.
+At this point, you can see the UI coming together. Now it's time to display some real data inside the list, but now we have a problem: how can we save selected dogs and pass them from the `Pets` component to the `Favorites` one? We cannot use props, because these two components don't have any 'parent-child' relationship... In such cases we need a _state management_ library and Vue does have one: it's called `Vuex`.
 
 >Vuex is a state management pattern and library for Vue.js applications. It serves as a centralized store for all the components in an application, with rules ensuring that the state can only be mutated in a predictable fashion. Learn more [here](vuex.vuejs.org/en/).
 
@@ -186,7 +186,7 @@ You can see that `favorites()` is a function which will return the value of the 
 
 Let's replace our mock data with the `favorites` content.
 
-First let's temporarily add some content to the `state.cart`. Copy the first three dogs from the `data/dogs.js` file and paste them to the `favorites` array in `store.js`:
+First let's temporarily add some content to the `state.favorites`. Copy the first three dogs from the `data/dogs.js` file and paste them to the `favorites` array in `store.js`:
 	
 ```
 	state: {
@@ -278,7 +278,7 @@ computed: {
 Now let's wrap our favorites icon with the Vuetify `v-badge` component and show the number of items inside of it. Edit `App.vue` with the following markup:
 	
 ```
-<router-link to="/cart">
+<router-link to="/favorites">
       <v-badge color="grey lighten-1" overlap right v-model="favorites.length">
           <span slot="badge">{{favorites.length}}</span>
             <v-icon large>loyalty</v-icon>
@@ -302,12 +302,12 @@ export default new Vuex.Store({
 });
 ```
 
-Inside this object create `addToCart` mutation:
+Inside this object create `addToFavorites` mutation:
 	
 ```
 	export default new Vuex.Store({
 	  state: {
-	    cart: []
+	    favorites: []
 	  },
 	  mutations: {
 	    addToFavorites(state, payload) {
@@ -319,11 +319,11 @@ Inside this object create `addToCart` mutation:
 	
 This mutation has two parameters: first is the `state` as said above; the second is the `data` or `payload` which we will add to our `state.favorites`. The `addToFavorites` mutation will add the payload item to the `state.favorites` array.
 	
->You cannot directly call a mutation handler. To invoke it, you need to call store.commit with its type: `store.commit('addToCart')`
+>You cannot directly call a mutation handler. To invoke it, you need to call store.commit with its type: `store.commit('addToFavorites')`
 
 >Usually in Vuex mutations are committed with _actions_. Actions are similar to mutations but they can contain asyncronous operations (like API calls).
 
-Let's register an action to commit our `addToFavorites` mutation. Add the `actions` property to the store object and `addToCart` action to this property:
+Let's register an action to commit our `addToFavorites` mutation. Add the `actions` property to the store object and `addToFavorites` action to this property:
 
 ```
 export default new Vuex.Store({
@@ -391,7 +391,7 @@ Let's call this method on the `app-dog` `addToFavorites` event. Edit the `<app-d
 <app-dog :dog="pet" @addToFavorites="addToFavorites"></app-dog>
 ```
 	
-Try to click on `Add to Favorites` buttons. You can see how the icon badge number increases and you can open the shopping cart by click on this icon and check how many dogs we have there.
+Try to click on `Add to Favorites` buttons. You can see how the icon badge number increases and you can open the favorites list by click on this icon and check how many dogs we have there.
 
 **Enhance the logic** 
 
@@ -411,11 +411,11 @@ Here we're checking the index of `payload` inside the `state.favorites` array. I
 
 Now we need a mechanism to remove dogs from the favorites list. Maybe they were adopted by someone else! Let's create an action and a mutation for this. 
 
-In the `store.js` add the `removeFromCart` mutation to `mutations` object:
+In the `store.js` add the `removeFromFavorites` mutation to `mutations` object:
 
 ```
 removeFromFavorites(state, payload) {
-    state.cart.splice(state.favorites.indexOf(payload), 1);
+    state.favorites.splice(state.favorites.indexOf(payload), 1);
   }
 ```
 
@@ -450,7 +450,7 @@ And finally add the click listener to the delete icon:
 <v-icon @click="removeFromFavorites(dog)">delete</v-icon>
 ```
 	
-Now you can add and remove dogs from your shopping cart.
+Now you can add and remove dogs from your favorites list.
 	
 Chapter 4 is complete!
 
